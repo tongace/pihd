@@ -12,9 +12,15 @@ Regular Part ID Registration
 ***Keywords***
 Select Tracking Point
     Open Browser    http://localhost:5000/pages/partIdRegistration/partIdRegistration    chrome
-    Select From List By Value    id=searchShop    A
-    Wait Until Element Contains   id=searchTrackingPoint   1M0
-    Select From List By Value    id=searchTrackingPoint    1M0
+    #Select From List By Value    id=searchShop    A
+    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/input
+    Wait Until Element Is Visible    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/div[2]
+    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/div[2]/div[2]
+    #Select From List By Value    id=searchTrackingPoint    1M0
+    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/i
+    Wait Until Element Is Visible    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/div[2]
+    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/div[2]/div[2]
+
     Click Element    id=buttonSearch
     Wait Until Element Is Visible    id=partRegistrationSection
     
@@ -37,11 +43,16 @@ Register Part
     Table Row Should Contain    id=tablePartList    3    TRANSMISSION ASSY
     Table Row Should Contain    id=tablePartList    4    FUEL TANK FILLER
     Table Row Should Contain    id=tablePartList    5    Vin No.
-    Input text    name=inputPartValue[0]    9903101111
-    Input text    name=inputPartValue[1]    1GD0796211
-    Input text    name=inputPartValue[2]    10A510020ANT051R
-    Input text    name=inputPartValue[3]    T240514200459112
-    Input text    name=inputPartValue[4]    MR0KU3CDXK0005045
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr/td[3]/div/input    9903101111
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr/td[3]/div/input    ENTER
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[2]/td[3]/div/input    1GD0796211
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[2]/td[3]/div/input    ENTER
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[3]/td[3]/div/input    10A510020ANT051R
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[3]/td[3]/div/input    ENTER
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[4]/td[3]/div/input    T240514200459112
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[4]/td[3]/div/input    ENTER
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    MR0KU3CDXK0005045
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    ENTER
     Click Element    id=buttonComplete
     Alert Should Be Present    MPI03000001INF Operation Complete Success
 View Vehicle History Inquiry
