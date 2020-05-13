@@ -8,7 +8,7 @@ Regular Part ID Registration - View Operation Logs
     Input Search DateTime From
     Select Combobox Screen
     Click Search
-    View Search Result Data Not Found   
+    View Search Result Data Not Found
 
 
 ***Keywords***
@@ -30,11 +30,9 @@ Input Search DateTime From
 
 Select Combobox Screen
     Click Element    xpath://*[@id="inputSearchScreen"]/div/input
-    Sleep    1
     Wait Until Element Is Visible    xpath://*[@id="inputSearchScreen"]/div/div[2]
-    Sleep    1
-    Click Element    xpath://*[@id="inputSearchScreen"]/div/div[2]/div[5]
     #Select From List By Value    id:searchScreen    PI03
+    Click Element    xpath://*[@id="inputSearchScreen"]/div/div[2]/div[5]
 
 Click Search
     Click Element    id:searchButton
