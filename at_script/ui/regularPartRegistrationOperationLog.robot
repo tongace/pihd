@@ -11,21 +11,27 @@ Regular Part ID Registration - View Operation Logs
 
 ***Keywords***
 Select Menu Operation Log
-    Open Browser    http://localhost:5000/pages/operationLog/operationLogSc48    chrome
+    #Open Browser    http://localhost:5000/pages/operationLog/operationLogSc48    chrome
+    Open Browser    http://localhost:5000/pages/vehicleHistoryInquiry/vehicleHistoryInquiry    chrome
+    Maximize Browser Window
+    Sleep    2
     Click Element    id:menucaller
-    Wait Until Element Is Visible    id:WBX01211
-    #Sleep    3
-    Click Element    id:WBX01211
+    Sleep    2
+    Wait Until Element Is Visible    id:LG01
+    Sleep    2
+    Click Element    id:LG01
 
 Input Search DateTime From
-    Input Text    searchDateTimeFrom    13/05/2020 00:00
-
+    Input Text    id:searchDateTimeFrom    13/05/2020 00:00
+    Press Keys    id:searchDateTimeFrom    ENTER
 Select Combobox Screen
+    Click Element    xpath://*[@id="input_s"]/div/div[2]/div
+   # Wait Until Element Is Visible    id:searchScreen
     Select From List By Value    id:searchScreen    PI03
 
 Click Search
     Click Element    id:search
-    Wait Until Element Is Visible    id=searchResultSection
+    Wait Until Element Is Visible    id:searchResultSection
 
 View Search Result Data Not Found
     Table Cell Should Contain    class:dataTables_empty    MCOM0000001ERR : Data not found
