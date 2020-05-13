@@ -43,4 +43,4 @@ Register Part
     Input text    name=inputPartValue[3]    T240514200459112
     Input text    name=inputPartValue[4]    MR0KU3CDXK0005045
     Click Element    id=buttonComplete
-    Element Text Should Be    id=labelMessage    MPI03000001INF Operation Complete Success
+    Alert Should Be Present    MPI03000001INF Operation Complete Success
