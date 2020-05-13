@@ -33,7 +33,7 @@ Select Combobox Screen
     #Select From List By Value    id:searchScreen    PI03
 
 Click Search
-    Click Element    id:search
+    Click Element    id:searchButton
     Wait Until Element Is Visible    id:searchResultSection
 
 View Search Result Data Not Found
