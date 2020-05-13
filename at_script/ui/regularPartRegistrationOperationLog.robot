@@ -4,8 +4,8 @@ Library    SeleniumLibrary
 ***Test Cases***
 Regular Part ID Registration - View Operation Logs
     Select Menu Operation Log
+    Input 
     Select Combobox Screen
-    Select Combobox Status
     Click Search
     View Search Result Data Not Found    
 
@@ -19,7 +19,7 @@ Select Menu Operation Log
 
 Select Combobox Screen
     Select From List By Value    id:searchScreen    PI03
-    
+
 Click Search
     Click Element    id=search
 View Search Result Data Not Found 
