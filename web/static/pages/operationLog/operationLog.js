@@ -85,9 +85,9 @@ $(document).ready(function () {
 
     $('#searchDateTimeFrom').calendar();
 
-    $('#dateTimeFrom').calendar({
-        type: 'date'
-    });
+    //$('#searchDateTimeFrom').calendar({
+    //    type: 'date'
+    //});
 
     $('#searchScreen')
         .dropdown({

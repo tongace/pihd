@@ -1,6 +1,7 @@
 ***Settings***
 Library    SeleniumLibrary
 
+
 ***Test Cases***
 Regular Part ID Registration - View Operation Logs
     Select Menu Operation Log
@@ -9,27 +10,30 @@ Regular Part ID Registration - View Operation Logs
     Click Search
     View Search Result Data Not Found   
 
-    
 
 ***Keywords***
 Select Menu Operation Log
     #Open Browser    http://localhost:5000/pages/operationLog/operationLog    chrome
     Open Browser    http://localhost:5000/pages/vehicleHistoryInquiry/vehicleHistoryInquiry    chrome
     Maximize Browser Window
-    Sleep    2
+    Sleep    1
     Click Element    id:menucaller
-    Sleep    2
+    Sleep    1
     Wait Until Element Is Visible    id:LG01
-    Sleep    2
+    Sleep    1
     Click Element    id:LG01
 
 Input Search DateTime From
-    Input Text    id:searchDateTimeFrom    13/05/2020 00:00
-    Press Keys    id:searchDateTimeFrom    ENTER
+    Click Element    id:searchDateTimeFrom
+    Input Text    id:inputDateTimeFrom    13/05/2020 00:00
+    Press Keys    id:inputDateTimeFrom    ENTER
+
 Select Combobox Screen
-    Click Element    xpath://*[@id="input_s"]/div/div[2]/div
-    Wait Until Element Is Visible    xpath://*[@id="input_s"]/div/div[2]/div/div[2]
-    Click Element    xpath://*[@id="input_s"]/div/div[2]/div/div[2]/div[5] 
+    Click Element    xpath://*[@id="inputSearchScreen"]/div/input
+    Sleep    1
+    Wait Until Element Is Visible    xpath://*[@id="inputSearchScreen"]/div/div[2]
+    Sleep    1
+    Click Element    xpath://*[@id="inputSearchScreen"]/div/div[2]/div[5]
     #Select From List By Value    id:searchScreen    PI03
 
 Click Search
@@ -37,5 +41,6 @@ Click Search
     Wait Until Element Is Visible    id:searchResultSection
 
 View Search Result Data Not Found
-    Table Cell Should Contain    class:dataTables_empty    MCOM0000001ERR : Data not found
+    Wait Until Element Is Visible    id:dataResult
+    Table Should Contain    id:dataResult    No data available in table
     
