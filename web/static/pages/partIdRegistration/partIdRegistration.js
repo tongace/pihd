@@ -87,22 +87,28 @@ $(document).ready(function () {
     });
 
     $('#buttonComplete').on('click', function () {
-        $('#partRegistrationSection').show();
-        $('#previousTrackingSection').show();
-        $('#operationSection').show();
-        $('#partListSection').hide();
-        $('#operationButtonPanel').hide();
-        $('#buttonComplete').hide();
-        $('#inputProductionNo').focus();
-        $('#inputProductionNo').val('');
-        $('.previousData').text('H30001-01');
-        $('.previousData').addClass('okStatus');
-        $('[name="inputPartvalue"]').each(function (index, obj) {
-            $(obj).val('');
-            let statusColumn = $('.statusColumn')[index]
-            $(statusColumn).text('');
-            $(statusColumn).removeClass('okStatus');
-        });
+        if (confirm('MPI03000001CFM: Are you sure to complete install part process of this vehicle in this tracking point?')) {
+            $('#partRegistrationSection').show();
+            $('#previousTrackingSection').show();
+            $('#operationSection').show();
+            $('#partListSection').hide();
+            $('#operationButtonPanel').hide();
+            $('#buttonComplete').hide();
+            $('#inputProductionNo').focus();
+            $('#inputProductionNo').val('');
+            $('.previousData').text('H30001-01');
+            $('.previousData').addClass('okStatus');
+            $('[name="inputPartvalue"]').each(function (index, obj) {
+                $(obj).val('');
+                let statusColumn = $('.statusColumn')[index]
+                $(statusColumn).text('');
+                $(statusColumn).removeClass('okStatus');
+            });
+            alert('MPI03000001INF: Part installation is complete.');
+        } else {
+            return false;
+        }
+
     });
 
 });
