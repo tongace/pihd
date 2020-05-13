@@ -14,5 +14,8 @@ target/
 .vscode/
 
 
-at_script/*.xml
-at_script/*.html
+at_script/ui/*.xml
+at_script/ui/*.html
+at_script/ui/*.png
+at_script/ui/*.jpg
+at_script/ui/*.jpeg
