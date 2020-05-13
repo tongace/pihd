@@ -13,6 +13,7 @@
     <script src="../../../js/semantic.min.js"></script>
     <script src="../../../js/moment.min.js"></script>
     <script src="../../../js/calendar.min.js"></script>
+    <script src="../../../js/AppUtils.js"></script>
 
     <script src="partIdRegistration.js"></script>
 
@@ -31,6 +32,21 @@
             border-left: 1px solid white;
             border-right: 1px solid white;
             border-top: 1px solid white;
+        }
+
+        .okStatus {
+            text-align: center;
+            background-color: green;
+        }
+
+        .ngDuplicateStatus {
+            text-align: center;
+            background-color: yellow;
+        }
+
+        .ngWrongFormatStatus {
+            text-align: center;
+            background-color: red;
         }
     </style>
 </head>
@@ -107,7 +123,7 @@
             <div class="ui light blue mini button" id="menucaller">
                 <i class="sidebar icon"></i> Menu
             </div>
-            <span class="screenid">H0001: Home</span>
+            <span class="screenid">PI03: Part ID Registration</span>
         </div>
         <div class="right item">
             <div style="padding-left: 2rem; pointer-events: none;">
@@ -148,11 +164,11 @@
                                         <label>Tracking Point</label>
                                         <select class="ui mini fluid search selection dropdown" id="searchTrackingPoint" name="searchTrackingPoint">
                                             <option value="Select">Select</option>
-                                            <option value="M0">1M0 : Frame-2</option>
-                                            <option value="H1">1H1 : Paint line</option>
-                                            <option value="N5">1N5 : Line-off</option>
-                                            <option value="Q3">1Q3 : QC point</option>
-                                            <option value="R4">1R4 : Buy-off</option>
+                                            <option value="1M0">1M0 : Frame-2</option>
+                                            <option value="1H1">1H1 : Paint line</option>
+                                            <option value="1N5">1N5 : Line-off</option>
+                                            <option value="1Q3">1Q3 : QC point</option>
+                                            <option value="1R4">1R4 : Buy-off</option>
                                         </select>
                                     </div>
                                 </div>
@@ -165,7 +181,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row" id="partRegistrationSection">
+                <div class="row" id="partRegistrationSection" style="display: none;">
                     <div class="eight wide column">
                         <div class="ui raised segment">
                             <h2 class="ui header">
@@ -205,7 +221,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="two wide column" id="previousTrackingSection">
+                    <div class="two wide column" id="previousTrackingSection" style="display: none;">
                         <div class="ui aligned raised segment">
                             <h4 class="ui header">
                                 <div class="content">
@@ -215,7 +231,7 @@
                             <table id="tablePreviousTracking" class="ui celled unstackable table" style="width:100%;">
                                 <tbody>
                                     <tr>
-                                        <td style="background-color: lightgreen;">
+                                        <td>
                                             None
                                         </td>
                                     </tr>
@@ -223,7 +239,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="ten wide column" id="operationSection">
+                    <div class="ten wide column" id="operationSection" style="display: none;">
                         <div class="ui aligned raised segment">
                             <div class="sixteen wide column row">
                                 <div class="ui form">
@@ -237,7 +253,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="sixteen wide column row" id="partListSection">
+                            <div class="sixteen wide column row" id="partListSection" style="display: none;">
                                 <table id="tablePartList" class="ui celled striped unstackable table" style="width:70%;">
                                     <thead>
                                         <tr style="text-align: center;">
@@ -265,11 +281,10 @@
                                             </td>
                                             <td>
                                                 <div class="ui basic input">
-                                                    <input type="text" name="partvalue[]" value="9903101111">
+                                                    <input type="text" name="inputPartvalue" value="">
                                                 </div>
                                             </td>
-                                            <td style="text-align: center;background-color: green;">
-                                                OK
+                                            <td class="statusColumn">
                                             </td>
                                         </tr>
                                         <tr>
@@ -281,11 +296,10 @@
                                             </td>
                                             <td>
                                                 <div class="ui basic input">
-                                                    <input type="text" name="partvalue[]" value="1GD079621100">
+                                                    <input type="text" name="inputPartvalue" value="">
                                                 </div>
                                             </td>
-                                            <td style="text-align: center;background-color: green;">
-                                                OK
+                                            <td class="statusColumn">
                                             </td>
                                         </tr>
                                         <tr>
@@ -297,11 +311,10 @@
                                             </td>
                                             <td>
                                                 <div class="ui basic input">
-                                                    <input type="text" name="partvalue[]" value="10A510020ANT05111">
+                                                    <input type="text" name="inputPartvalue" value="">
                                                 </div>
                                             </td>
-                                            <td style="text-align: center;background-color: green;">
-                                                OK
+                                            <td class="statusColumn">
                                             </td>
                                         </tr>
                                         <tr>
@@ -313,11 +326,10 @@
                                             </td>
                                             <td>
                                                 <div class="ui basic input">
-                                                    <input type="text" name="partvalue[]" value="T240514200459111">
+                                                    <input type="text" name="inputPartvalue" value="">
                                                 </div>
                                             </td>
-                                            <td style="text-align: center;background-color: green;">
-                                                OK
+                                            <td class="statusColumn">
                                             </td>
                                         </tr>
                                         <tr>
@@ -329,20 +341,19 @@
                                             </td>
                                             <td>
                                                 <div class="ui basic input">
-                                                    <input type="text" name="partvalue[]" value="XXXXXXXXXXXXX">
+                                                    <input type="text" name="inputPartvalue" value="">
                                                 </div>
                                             </td>
-                                            <td style="text-align: center;background-color: green;">
-                                                OK
+                                            <td class="statusColumn">
                                             </td>
                                         </tr>
                                     </thead>
                                 </table>
                             </div>
                             <div class="ui hidden divider"></div>
-                            <div class="sixteen wide column row" style="text-align: center;" id="operationButtonPanel">
-                                <div class="ui primary button" id="complete"><i class="save icon"></i>Complete</div>
-                                <div class="ui button" id="cancel"><i class="times icon"></i>Cancel</div>
+                            <div class="sixteen wide column row" style="text-align: center;display: none;" id="operationButtonPanel">
+                                <div class="ui primary button" id="buttonComplete"><i class="save icon"></i>Complete</div>
+                                <div class="ui button" id="buttonCancel"><i class="times icon"></i>Cancel</div>
                             </div>
                         </div>
                     </div>
