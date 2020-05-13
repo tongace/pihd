@@ -1,0 +1,14 @@
+{
+	"id": "0d5307b0-5664-4271-a5a3-499986063f72",
+	"name": "UAT",
+	"values": [
+		{
+			"key": "url",
+			"value": "http://uat:8080/pihd",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-05-12T10:05:22.576Z",
+	"_postman_exported_using": "Postman/7.23.0"
+}

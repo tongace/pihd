@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "935ca5bb-9299-4646-92f4-73e9257722dd",
+		"name": "Regular Part Registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Shop Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0324b220-6bbe-410f-b37f-39431afe577d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"get shop for mvuthipa should be A and  Q\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(data[\"shopCount\"]);",
+							"    pm.expect(jsonData[0].value).to.eql(\"A\");",
+							"    pm.expect(jsonData[0].text).to.eql(\"A\");",
+							"    pm.expect(jsonData[1].value).to.eql(\"Q\");",
+							"    pm.expect(jsonData[1].text).to.eql(\"Q\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/shop/{{userName}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"shop",
+						"{{userName}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

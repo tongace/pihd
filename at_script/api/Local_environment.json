@@ -1,0 +1,14 @@
+{
+	"id": "15cd4382-eb0a-4024-adea-4eabda41281d",
+	"name": "Local",
+	"values": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080/pihd",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-05-12T10:05:08.464Z",
+	"_postman_exported_using": "Postman/7.23.0"
+}
