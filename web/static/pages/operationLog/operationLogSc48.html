@@ -3,29 +3,37 @@
 
 <head>
     <!-- Standard Meta -->
+    <!-- Standard Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>Operation Log</title>
+    <link rel="icon" type="image/jpeg" href="../../../images/logo.ico" />
+    <title>PIHD</title>
 
-    <script src="../scripts/jquery-3.4.1.min.js"></script>
-    <script src="../scripts/semantic.min.js"></script>
-    <script src="../scripts/moment.min.js"></script>
-    <script src="../scripts/jquery.dataTables.min.js"></script>
-    <script src="../scripts/dataTables.semanticui.min.js"></script>
-    <script src="../scripts/dataTables.buttons.min.js"></script>
-    <script src="../scripts/buttons.semanticui.min.js"></script>
-    <script src="../scripts/jszip.min.js"></script>
-    <script src="../scripts/buttons.html5.min.js"></script>
-    <script src="../scripts/calendar.min.js"></script>
 
-    <script src="../js/Operation_Log.js"></script>
+    <script src="../../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../../js/semantic.min.js"></script>
+    <script src="../../../js/moment.min.js"></script>
+    <script src="../../../js/AppUtils.js"></script>
 
-    <link href="../css/semantic.min.css" rel='stylesheet' />
-    <link href="../css/dataTables.semanticui.min.css" rel='stylesheet' />
-    <link href="../css/buttons.semanticui.min.css" rel='stylesheet' />
-    <link href="../css/fontsize.css" rel='stylesheet' />
-    <link href="../css/hpstyle.css" rel='stylesheet' />
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script src="../../../js/dataTables.semanticui.min.js"></script>
+    <script src="../../../js/dataTables.buttons.min.js"></script>
+    <script src="../../../js/buttons.semanticui.min.js"></script>
+    <script src="../../../js/jszip.min.js"></script>
+    <script src="../../../js/buttons.html5.min.js"></script>
+    <script src="../../../js/calendar.min.js"></script>
+    <script src="operationLog.js"></script>
+
+    <link href="../../../css/semantic.min.css" rel='stylesheet' />
+    <link href="../../../css/dataTables.semanticui.min.css" rel='stylesheet' />
+    <link href="../../../css/buttons.semanticui.min.css" rel='stylesheet' />
+    <link href="../../../css/fontsize.css" rel='stylesheet' />
+    <!-- <link href="../../../css/hpstyle.css" rel='stylesheet' /> -->
+    <link href="../../../css/calendar.min.css" rel='stylesheet' />
+
+
+
 </head>
 
 <body>
@@ -33,65 +41,66 @@
         <div class="item" data-tagtype="menugroup">
             <h3>PIHD</h3>
         </div>
-        <div id="WBX01111" class="menu" data-tagtype="menugroup">
-            <a class="item" href="/pihd/home" data-tagtype="menuitem">
+        <div id="H001" class="menu" data-tagtype="menugroup">
+            <a class="item" href="home.js" data-tagtype="menuitem">
                 <span class="text">
                     <i class="ui big home icon"></i>
                 </span>
             </a>
         </div>
-        <div id="BX0004" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+        <div id="SY" class="item" data-tagtype="menugroup">
+            <a href="#" onclick="return AppUtils.toggleGroupMenu(this)">
                 <span class="text">System</span>
             </a>
             <div class="menu">
-                <a id="WBX01331" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/overallstatusreport">Setting</a>
+                <a id="SY01" class="item" data-tagtype="menuitem" href="userMaintenance.html">SY01: User Maintenance</a>
             </div>
         </div>
-        <div id="BX0005" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
-                <span class="text">Master Data</span>
-            </a>
-            <div class="menu">
-                <a id="WBX013F1" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/kpicheckpointbenchmark">Traceability Part Master</a>
-            </div>
-        </div>
-        <div id="BX0002" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this);">
+        <div id="PP" class="item" data-tagtype="menugroup">
+            <a href="#" onclick="return AppUtils.toggleGroupMenu(this);">
                 <span class="text">Production Plan</span>
             </a>
             <div class="menu">
-                <a id="WBX01311" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/tasklist">Production Plan Uplaod and Maintenance</a>
-                <a id="WBX01321" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/generatereport">Daily Producton Plan Release</a>
+                <a id="PP01" class="item" data-tagtype="menuitem" href="productionPlanAndMaintenance.html">PP01: Production Plan Upload and Maintenance</a>
+                <a id="PP02" class="item" data-tagtype="menuitem" href="productionPlanRelease.html">PP02: Daily Production Plan Release</a>
             </div>
         </div>
-        <div id="BX0003" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+        <div id="VH" class="item" data-tagtype="menugroup">
+            <a href="#" onclick="return AppUtils.toggleGroupMenu(this)">
                 <span class="text">Vehicle History</span>
             </a>
             <div class="menu">
-                <a id="WBX01361" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/qualityproblemfollowup">Vehicle history inquiry and maintenance</a>
-                <a id="WBX01351" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/deliveryproblemfollowup">QC Traceability Part Maintenance</a>
-                <a id="WBX01391" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/partpreparationproblemfollowup">Vehicle Tracking time maintenance</a>
+                <a id="VH01" class="item" data-tagtype="menuitem" href="../vehicleHistoryInquiry/vehicleHistoryInquiry.html">VH01: Vehicle History Inquiry</a>
+                <a id="VH02" class="item" data-tagtype="menuitem" href="vehicleTrackingTimeMaintenace.html">VH02: Vehicle Tracking Time Maintenance</a>
             </div>
         </div>
-        <div id="BX0001" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
-                <span class="text">PDIM</span>
+        <div id="PI" class="item" data-tagtype="menugroup">
+            <a href="#" onclick="return AppUtils.toggleGroupMenu(this)">
+                <span class="text">Part Id</span>
             </a>
             <div class="menu">
-                <a id="WBX01211" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/homemaintenance">PDIM Master setting</a>
-                <a id="WBX01221" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/kpiset">PDIM Operation</a>
-                <a id="WBX01231" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/calculationformula">Part Duplication Summary</a>
+                <a id="PI01" class="item" data-tagtype="menuitem" href="partIdFormatSetting.html">PI01: Part ID Format Setting</a>
+                <a id="PI02" class="item" data-tagtype="menuitem" href="partIdMaster.html">PI02: Part ID Master</a>
+                <a id="PI03" class="item" data-tagtype="menuitem" href="../partIdRegistration/partIdRegistration.html">PI03: Part ID Registration</a>
+                <a id="PI04" class="item" data-tagtype="menuitem" href="partIdDuplicationSummary.html">PI04: Part ID Duplication Summary</a>
+                <a id="PI05" class="item" data-tagtype="menuitem" href="partIdAmendment.html">PI05: Part ID Amendment</a>
             </div>
         </div>
-        <div id="BX0001" class="item" data-tagtype="menugroup" data-auth="no">
-            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
-                <span class="text">Log</span>
+        <div id="LG" class="item" data-tagtype="menugroup">
+            <a href="#" onclick="return AppUtils.toggleGroupMenu(this)">
+                <span class="text">Operation Log</span>
             </a>
             <div class="menu">
-                <a id="WBX01211" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/homemaintenance">Operation Log</a>
+                <a id="LG01" class="item" data-tagtype="menuitem" href="../operationLog/operationLogSc48.html">LG01: Operation Log</a>
             </div>
+        </div>
+        <div id="LO01" class="menu" data-tagtype="menugroup">
+            <a class="item" href="../../index.html" data-tagtype="menuitem">
+                <span class="text">
+                    <i class="ui big sign out alternate icon"></i>
+                    Log Out
+                </span>
+            </a>
         </div>
     </div>
     <div class="ui light blue mini top fixed inverted borderless menu">
@@ -131,10 +140,10 @@
                                 <div class="fields ">
                                     <div class="three wide field required">
                                         <label>Date Time From</label>
-                                        <div class="ui mini calendar" id="searchDateTimeFrom">
+                                        <div class="ui mini calendar" id="dateTimeFrom">
                                             <div class="ui active mini input left icon">
                                                 <i class="calendar icon"></i>
-                                                <input type="text" placeholder="Date/Time">
+                                                <input id="searchDateTimeFrom" type="text" placeholder="Date/Time">
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +175,7 @@
 
                                     <div class="four wide field" style="text-align: right;">
                                         <label>&nbsp;</label>
-                                        <div class="ui active mini button" id="WBX01281Search"><i class="search icon"></i>Search</div>
+                                        <div class="ui active mini button" id="searchButton"><i class="search icon"></i>Search</div>
                                         <div class="ui active mini button " id="WBX01281Clear"><i class="paint brush icon"></i>Clear</div>
                                     </div>
 
@@ -179,9 +188,11 @@
                     <div>&nbsp;</div>
 
 
-                    <div id="content_datatable_result_search">
+
+
+                    <div id="searchResultSection" style="display: none;">
                         <div class=" sixteen wide column row">
-                            <table id="datatable_result_search" class="ui celled striped unstackable table" style="width:100%">
+                            <table id="dataResult" class="ui celled striped unstackable table" style="width:100%">
                                 <thead>
                                     <tr style="text-align: center;">
                                         <th>Date / Time</th>
@@ -196,7 +207,7 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td>05/02/2020 11:00:00</td>
                                         <td>PA01</td>
                                         <td>Production Plan Upload and Maintenance</td>
@@ -305,7 +316,7 @@
                                         <td><a href="#">See Detail</a></td>
                                         <td> </td>
                                         <td>nuttakit</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -323,110 +334,6 @@
                     <div>&nbsp;</div>
 
 
-                    <div class="sixteen wide column row">
-                        <form class="ui form raised segment " id="gimHeaderForm" style="width: 100%;display: ;">
-                            <div id="input_s" class="field ">
-                                <div class="fields ">
-                                    <div class="three wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Date / Time&nbsp;</div>
-                                            05/02/2020 11:20:00
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Screen Code&nbsp;</div>
-                                            PI01
-                                        </div>
-                                    </div>
-
-                                    <div class="four wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Screen Name&nbsp;</div>
-                                            Part ID Format Setting
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Process&nbsp;</div>
-                                            Register
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Status&nbsp;</div>
-                                            Success
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Action By&nbsp;</div>
-                                            nuttakit
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div>&nbsp;</div>
-
-                    <div id="content_datatable_result_detail">
-                        <div class=" sixteen wide column row">
-                            <table id="datatable_result_detail" class="ui celled striped unstackable table" style="width:100%">
-                                <thead>
-                                    <tr style="text-align: center;">
-                                        <th>Action</th>
-                                        <th>Keys Info.</th>
-                                        <th>Changed Info.</th>
-                                        <th>Before Value</th>
-                                        <th>After value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Add</td>
-                                        <td>578W, Frame, Vin No. 3</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edit</td>
-                                        <td>578W, Engine, Engine No. 1</td>
-                                        <td>Characteristic</td>
-                                        <td>AAACCCNNN</td>
-                                        <td>CCCAANNNNN</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Delete</td>
-                                        <td>578W, Frame, Vin No. 1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="sixteen wide column row" style="display: none;">
-                            <div class="sixteen wide column row">
-                                <div class=" ui active mini button" id="WSY01Register"><i></i> Register</div>
-                                <div class=" ui active mini button"><i></i> Cancel</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>&nbsp;</div>
-                    <div class="sixteen wide column row" style="text-align: right;display:  ;">
-                        <div class="sixteen wide column row">
-
-                            <div class=" ui active mini button"><i></i> Bcak</div>
-                        </div>
-                    </div>
 
 
                 </div>

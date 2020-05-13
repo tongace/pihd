@@ -7,52 +7,10 @@ $(document).ready(function () {
     'use strict'
     $('#SaveEditScreen').form({
         fields: {
-            username: {
-                identifier: 'userId',
+            NewPartId: {
+                identifier: 'NewPartId',
                 rules: [{
                     type: 'empty'
-                }]
-            },
-            password: {
-                identifier: 'password',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            confirmPassword: {
-                identifier: 'confirmPassword',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            name: {
-                identifier: 'name',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            section: {
-                identifier: 'section',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            email: {
-                identifier: 'email',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            extNo: {
-                identifier: 'extNo',
-                rules: [{
-                    type: 'empty'
-                }]
-            },
-            userRole: {
-                identifier: 'userRole',
-                rules: [{
-                    type: 'not[Select]'
                 }]
             }
         },
@@ -71,30 +29,51 @@ $(document).ready(function () {
     });
     // timer
     let displayDBServerTime = function () {
-        let dateTime = new Date();
-        $('.time').text(moment(dateTime).format('DD MMM YYYY HH:mm:ss'));
-        setInterval(function () {
-            dateTime.setTime((dateTime.getTime() + 1000));
-            $('.time').text(moment(dateTime).format('DD MMM YYYY HH:mm:ss'));
-        }, 1000);
+        // let dateTime = new Date();
+        // $('.time').text(moment(dateTime).format('DD MMM YYYY HH:mm:ss'));
+        // setInterval(function () {
+        //     dateTime.setTime((dateTime.getTime() + 1000));
+        //     $('.time').text(moment(dateTime).format('DD MMM YYYY HH:mm:ss'));
+        // }, 1000);
     };
     // call displayDBServerTime immediately
     displayDBServerTime();
     // repeat call every 5 min to for update
     setInterval(displayDBServerTime, 300000);
 
-    $('#searchDateTimeFrom').calendar();
 
-    $('#searchScreen')
+    // $('#date_from').calendar{
+    //     type: 'date',
+    // }
+    $('#date_from').calendar({
+        type: 'date'
+    });
+    $('#date_to').calendar({
+        type: 'date'
+    });
+
+
+    $('#planLineOffFrom').calendar({
+        type: 'date'
+    });
+    $('#planLineOffTo').calendar({
+        type: 'date'
+    });
+
+
+
+    $('#WBX0USERROLE')
         .dropdown({
             allowAdditions: true,
             forceSelection: false
         });
-    $('#searchStatus')
+    $('#WSY01UserRoleInfoEditScreen')
         .dropdown({
             allowAdditions: true,
             forceSelection: false
         });
+
+
 
     $('.ui .selection .dropdown')
         .dropdown({
@@ -105,10 +84,10 @@ $(document).ready(function () {
                 prompt: 'Please enter a value'
             }]
         });
-    let table = $('#datatable_result_search').DataTable({
+    let table = $('#dataResult').DataTable({
+        "scrollX": true,
         "ordering": true,
         "lengthChange": false,
-        overflow: scroll,
         "buttons": [{
             text: '<i class="green file excel outline icon">',
             titleAttr: 'Export to Excel',
@@ -117,20 +96,6 @@ $(document).ready(function () {
         }, 'pageLength'],
     });
     table.buttons().container().appendTo($('div.eight.column:eq(0)', table.table().container()));
-
-    let table2 = $('#datatable_result_detail').DataTable({
-        "ordering": true,
-        "lengthChange": false,
-        overflow: scroll,
-        "buttons": [{
-            text: '<i class="green file excel outline icon">',
-            titleAttr: 'Export to Excel',
-            extend: 'excelHtml5',
-            title: 'Supplier Master'
-        }, 'pageLength'],
-    });
-    table2.buttons().container().appendTo($('div.eight.column:eq(0)', table.table().container()));
-
     $('#WBX01281Add').on('click', function (event) {
         event.preventDefault();
         $('#mainscreen').hide(1000);
@@ -144,7 +109,8 @@ $(document).ready(function () {
         $('#roleinfoscreen').hide(1000);
     });
 
-    $('#WBX01281OK').on('click', function (event) {
+    $('#IP0501281OK').on('click', function (event) {
+        alert("kk")
         // event.preventDefault();
         // $('#SaveEditScreen').form("validat ")
         $('#SaveEditScreen').form('validate form');
@@ -184,12 +150,22 @@ $(document).ready(function () {
     });
 
 
-    $('#WSY01Register').on("click", function () {
-        $('#modileRegis').modal('show');
+    $('#searchButton').on("click", function () {
+        $('#searchResultSection').show(1000);
+        //modileRegis modileRegisErr
     });
 
-
-
-
+    $('#searchedTrackingPoint').dropdown({
+        forceSelection: false
+    });
+    $('#shift_no').dropdown({
+        forceSelection: false
+    });
+    $('#cfc').dropdown({
+        forceSelection: false
+    });
+    $('#tracibility').dropdown({
+        forceSelection: false
+    });
 });
 //]]>
