@@ -72,10 +72,9 @@ $(document).ready(function () {
         }
     });
 
-    $('[name="inputPartvalue"]').each(function (index, obj, ) {
+    $('[name="inputPartvalue"]').each(function (index, obj) {
         $(obj).on('keypress', function (event) {
             if (event.which == 13) {
-                console.log($(obj).parent());
                 $('#buttonComplete').show();
                 let statusColumn = $('.statusColumn')[index]
                 $(statusColumn).text('OK');
@@ -96,8 +95,14 @@ $(document).ready(function () {
         $('#buttonComplete').hide();
         $('#inputProductionNo').focus();
         $('#inputProductionNo').val('');
-        $('#tablePreviousTracking').parent().siblings(":first").text('H30001-01')
-        $('#tablePreviousTracking').parent().siblings(":first").addClass('okStatus');
+        $('.previousData').text('H30001-01');
+        $('.previousData').addClass('okStatus');
+        $('[name="inputPartvalue"]').each(function (index, obj) {
+            $(obj).val('');
+            let statusColumn = $('.statusColumn')[index]
+            $(statusColumn).text('');
+            $(statusColumn).removeClass('okStatus');
+        });
     });
 
 });
