@@ -83,7 +83,7 @@ $(document).ready(function () {
     // repeat call every 5 min to for update
     setInterval(displayDBServerTime, 300000);
 
-    // $('#dateTimeFrom').calendar();
+    $('#searchDateTimeFrom').calendar();
 
     $('#dateTimeFrom').calendar({
         type: 'date'
