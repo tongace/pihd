@@ -83,7 +83,11 @@ $(document).ready(function () {
     // repeat call every 5 min to for update
     setInterval(displayDBServerTime, 300000);
 
-    $('#searchDateTimeFrom').calendar();
+    // $('#dateTimeFrom').calendar();
+
+    $('#dateTimeFrom').calendar({
+        type: 'date'
+    });
 
     $('#searchScreen')
         .dropdown({
@@ -118,7 +122,7 @@ $(document).ready(function () {
     });
     table.buttons().container().appendTo($('div.eight.column:eq(0)', table.table().container()));
 
-    let table2 = $('#datatable_result_detail').DataTable({
+    let table2 = $('#dataResult').DataTable({
         "ordering": true,
         "lengthChange": false,
         overflow: scroll,
@@ -189,7 +193,14 @@ $(document).ready(function () {
     });
 
 
+    $('#WSY01Register').on("click", function () {
+        $('#modileRegis').modal('show');
+    });
 
+    $('#searchButton').on("click", function () {
+        $('#searchResultSection').show(1000);
+
+    });
 
 });
 //]]>

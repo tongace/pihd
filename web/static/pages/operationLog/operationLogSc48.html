@@ -10,15 +10,30 @@
     <link rel="icon" type="image/jpeg" href="../../../images/logo.ico" />
     <title>PIHD</title>
 
+
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/semantic.min.js"></script>
     <script src="../../../js/moment.min.js"></script>
-    <script src="../../../js/moment.min.js"></script>
     <script src="../../../js/AppUtils.js"></script>
-    <script src="/OperationLog.js"></script>
+
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script src="../../../js/dataTables.semanticui.min.js"></script>
+    <script src="../../../js/dataTables.buttons.min.js"></script>
+    <script src="../../../js/buttons.semanticui.min.js"></script>
+    <script src="../../../js/jszip.min.js"></script>
+    <script src="../../../js/buttons.html5.min.js"></script>
+    <script src="../../../js/calendar.min.js"></script>
+    <script src="operationLog.js"></script>
 
     <link href="../../../css/semantic.min.css" rel='stylesheet' />
+    <link href="../../../css/dataTables.semanticui.min.css" rel='stylesheet' />
+    <link href="../../../css/buttons.semanticui.min.css" rel='stylesheet' />
     <link href="../../../css/fontsize.css" rel='stylesheet' />
+    <!-- <link href="../../../css/hpstyle.css" rel='stylesheet' /> -->
+    <link href="../../../css/calendar.min.css" rel='stylesheet' />
+
+
+
 </head>
 
 <body>
@@ -55,7 +70,7 @@
                 <span class="text">Vehicle History</span>
             </a>
             <div class="menu">
-                <a id="VH01" class="item" data-tagtype="menuitem" href="vehicleHistoryInquiry.html">VH01: Vehicle History Inquiry</a>
+                <a id="VH01" class="item" data-tagtype="menuitem" href="../vehicleHistoryInquiry/vehicleHistoryInquiry.html">VH01: Vehicle History Inquiry</a>
                 <a id="VH02" class="item" data-tagtype="menuitem" href="vehicleTrackingTimeMaintenace.html">VH02: Vehicle Tracking Time Maintenance</a>
             </div>
         </div>
@@ -76,7 +91,7 @@
                 <span class="text">Operation Log</span>
             </a>
             <div class="menu">
-                <a id="LG01" class="item" data-tagtype="menuitem" href="../opeartionLog/operationLogSc48.html">LG01: Operation Log</a>
+                <a id="LG01" class="item" data-tagtype="menuitem" href="../operationLog/operationLogSc48.html">LG01: Operation Log</a>
             </div>
         </div>
         <div id="LO01" class="menu" data-tagtype="menugroup">
@@ -125,7 +140,7 @@
                                 <div class="fields ">
                                     <div class="three wide field required">
                                         <label>Date Time From</label>
-                                        <div class="ui mini calendar" id="searchDateTimeFrom">
+                                        <div class="ui mini calendar" id="dateTimeFrom">
                                             <div class="ui active mini input left icon">
                                                 <i class="calendar icon"></i>
                                                 <input id="searchDateTimeFrom" type="text" placeholder="Date/Time">
@@ -160,7 +175,7 @@
 
                                     <div class="four wide field" style="text-align: right;">
                                         <label>&nbsp;</label>
-                                        <div class="ui active mini button" id="WBX01281Search"><i class="search icon"></i>Search</div>
+                                        <div class="ui active mini button" id="searchButton"><i class="search icon"></i>Search</div>
                                         <div class="ui active mini button " id="WBX01281Clear"><i class="paint brush icon"></i>Clear</div>
                                     </div>
 
@@ -173,9 +188,11 @@
                     <div>&nbsp;</div>
 
 
-                    <div id="content_datatable_result_search">
+
+
+                    <div id="searchResultSection" style="display: none;">
                         <div class=" sixteen wide column row">
-                            <table id="datatable_result_search" class="ui celled striped unstackable table" style="width:100%">
+                            <table id="dataResult" class="ui celled striped unstackable table" style="width:100%">
                                 <thead>
                                     <tr style="text-align: center;">
                                         <th>Date / Time</th>
@@ -190,7 +207,7 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td>05/02/2020 11:00:00</td>
                                         <td>PA01</td>
                                         <td>Production Plan Upload and Maintenance</td>
@@ -299,7 +316,7 @@
                                         <td><a href="#">See Detail</a></td>
                                         <td> </td>
                                         <td>nuttakit</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -317,110 +334,6 @@
                     <div>&nbsp;</div>
 
 
-                    <div class="sixteen wide column row">
-                        <form class="ui form raised segment " id="gimHeaderForm" style="width: 100%;display: ;">
-                            <div id="input_s" class="field ">
-                                <div class="fields ">
-                                    <div class="three wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Date / Time&nbsp;</div>
-                                            05/02/2020 11:20:00
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Screen Code&nbsp;</div>
-                                            PI01
-                                        </div>
-                                    </div>
-
-                                    <div class="four wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Screen Name&nbsp;</div>
-                                            Part ID Format Setting
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Process&nbsp;</div>
-                                            Register
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Status&nbsp;</div>
-                                            Success
-                                        </div>
-                                    </div>
-
-                                    <div class="two wide field  ">
-                                        <div class="item">
-                                            <div class="ui horizontal label">Action By&nbsp;</div>
-                                            nuttakit
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div>&nbsp;</div>
-
-                    <div id="content_datatable_result_detail">
-                        <div class=" sixteen wide column row">
-                            <table id="datatable_result_detail" class="ui celled striped unstackable table" style="width:100%">
-                                <thead>
-                                    <tr style="text-align: center;">
-                                        <th>Action</th>
-                                        <th>Keys Info.</th>
-                                        <th>Changed Info.</th>
-                                        <th>Before Value</th>
-                                        <th>After value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Add</td>
-                                        <td>578W, Frame, Vin No. 3</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Edit</td>
-                                        <td>578W, Engine, Engine No. 1</td>
-                                        <td>Characteristic</td>
-                                        <td>AAACCCNNN</td>
-                                        <td>CCCAANNNNN</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Delete</td>
-                                        <td>578W, Frame, Vin No. 1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="sixteen wide column row" style="display: none;">
-                            <div class="sixteen wide column row">
-                                <div class=" ui active mini button" id="WSY01Register"><i></i> Register</div>
-                                <div class=" ui active mini button"><i></i> Cancel</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>&nbsp;</div>
-                    <div class="sixteen wide column row" style="text-align: right;display:  ;">
-                        <div class="sixteen wide column row">
-
-                            <div class=" ui active mini button"><i></i> Bcak</div>
-                        </div>
-                    </div>
 
 
                 </div>
