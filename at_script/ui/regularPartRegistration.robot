@@ -54,7 +54,8 @@ Register Part
     Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    MR0KU3CDXK0005045
     Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    ENTER
     Click Element    id=buttonComplete
-    Alert Should Be Present    MPI03000001INF Operation Complete Success
+    Alert Should Be Present    MPI03000001CFM: Are you sure to complete install part process of this vehicle in this tracking point?
+    Alert Should Be Present    MPI03000001INF: Part installation is complete.
 View Vehicle History Inquiry
     Click Element    id:menucaller
     Wait Until Element Is Visible    id:VH01
