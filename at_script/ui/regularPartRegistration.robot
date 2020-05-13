@@ -44,3 +44,8 @@ Register Part
     Input text    name=inputPartValue[4]    MR0KU3CDXK0005045
     Click Element    id=buttonComplete
     Alert Should Be Present    MPI03000001INF Operation Complete Success
+View Vehicle History Inquiry
+    Click Element    id:menucaller
+    Wait Until Element Is Visible    id:VH01
+    Sleep    2
+    Click Element    id:VH01
