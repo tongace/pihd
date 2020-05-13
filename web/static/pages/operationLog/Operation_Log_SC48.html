@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Operation Log</title>
+
+    <script src="../scripts/jquery-3.4.1.min.js"></script>
+    <script src="../scripts/semantic.min.js"></script>
+    <script src="../scripts/moment.min.js"></script>
+    <script src="../scripts/jquery.dataTables.min.js"></script>
+    <script src="../scripts/dataTables.semanticui.min.js"></script>
+    <script src="../scripts/dataTables.buttons.min.js"></script>
+    <script src="../scripts/buttons.semanticui.min.js"></script>
+    <script src="../scripts/jszip.min.js"></script>
+    <script src="../scripts/buttons.html5.min.js"></script>
+    <script src="../scripts/calendar.min.js"></script>
+
+    <script src="../js/Operation_Log.js"></script>
+
+    <link href="../css/semantic.min.css" rel='stylesheet' />
+    <link href="../css/dataTables.semanticui.min.css" rel='stylesheet' />
+    <link href="../css/buttons.semanticui.min.css" rel='stylesheet' />
+    <link href="../css/fontsize.css" rel='stylesheet' />
+    <link href="../css/hpstyle.css" rel='stylesheet' />
+</head>
+
+<body>
+    <div class="ui inverted sidebar vertical menu" id="espi_menu">
+        <div class="item" data-tagtype="menugroup">
+            <h3>PIHD</h3>
+        </div>
+        <div id="WBX01111" class="menu" data-tagtype="menugroup">
+            <a class="item" href="/pihd/home" data-tagtype="menuitem">
+                <span class="text">
+                    <i class="ui big home icon"></i>
+                </span>
+            </a>
+        </div>
+        <div id="BX0004" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+                <span class="text">System</span>
+            </a>
+            <div class="menu">
+                <a id="WBX01331" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/overallstatusreport">Setting</a>
+            </div>
+        </div>
+        <div id="BX0005" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+                <span class="text">Master Data</span>
+            </a>
+            <div class="menu">
+                <a id="WBX013F1" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/kpicheckpointbenchmark">Traceability Part Master</a>
+            </div>
+        </div>
+        <div id="BX0002" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this);">
+                <span class="text">Production Plan</span>
+            </a>
+            <div class="menu">
+                <a id="WBX01311" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/tasklist">Production Plan Uplaod and Maintenance</a>
+                <a id="WBX01321" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/generatereport">Daily Producton Plan Release</a>
+            </div>
+        </div>
+        <div id="BX0003" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+                <span class="text">Vehicle History</span>
+            </a>
+            <div class="menu">
+                <a id="WBX01361" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/qualityproblemfollowup">Vehicle history inquiry and maintenance</a>
+                <a id="WBX01351" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/deliveryproblemfollowup">QC Traceability Part Maintenance</a>
+                <a id="WBX01391" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/partpreparationproblemfollowup">Vehicle Tracking time maintenance</a>
+            </div>
+        </div>
+        <div id="BX0001" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+                <span class="text">PDIM</span>
+            </a>
+            <div class="menu">
+                <a id="WBX01211" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/homemaintenance">PDIM Master setting</a>
+                <a id="WBX01221" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/kpiset">PDIM Operation</a>
+                <a id="WBX01231" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/calculationformula">Part Duplication Summary</a>
+            </div>
+        </div>
+        <div id="BX0001" class="item" data-tagtype="menugroup" data-auth="no">
+            <a href="#" onclick="return ESPIUtils.toggleGroupMenu(this)">
+                <span class="text">Log</span>
+            </a>
+            <div class="menu">
+                <a id="WBX01211" class="item" data-tagtype="menuitem" data-auth="no" href="/wBX0/homemaintenance">Operation Log</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui light blue mini top fixed inverted borderless menu">
+        <div class="left item">
+            <div class="ui light blue mini button" id="menucaller">
+                <i class="sidebar icon"></i> Menu
+            </div>
+            <span class="screenid">LG01 : Operation Log</span>
+        </div>
+        <div class="right item">
+            <div style="padding-left: 2rem; pointer-events: none;">
+                <i class="user icon"></i>
+                <span class="userinfo">PIHDUserID</span>
+            </div>
+        </div>
+    </div>
+    <div class="ui light blue mini bottom fixed inverted borderless menu">
+        <div class="left item">
+            <span></span>
+        </div>
+        <div class="center item">
+            <SPAN class="footer">DXC Thailand Ltd.</SPAN>
+        </div>
+        <div class="right item">
+            <SPAN class="time"></SPAN>
+        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="pusher">
+        <div class="ui fluid container" style="margin-top: 4rem; margin-bottom: 4rem; padding-left: 1rem; padding-right: 1rem;">
+            <div class="ui grid">
+                <div id="mainscreen" style="width: 100%;">
+                    <!-- -->
+                    <div class="sixteen wide column row">
+                        <form class="ui form raised segment " id="gimHeaderForm" style="width: 100%;display: ;">
+                            <div id="input_s" class="field ">
+                                <div class="fields ">
+                                    <div class="three wide field required">
+                                        <label>Date Time From</label>
+                                        <div class="ui mini calendar" id="searchDateTimeFrom">
+                                            <div class="ui active mini input left icon">
+                                                <i class="calendar icon"></i>
+                                                <input type="text" placeholder="Date/Time">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="five wide field  ">
+                                        <label>Screen</label>
+                                        <div class="ui mini basic input  ">
+                                            <select class="ui mini fluid search selection dropdown" id="searchScreen" name="skills">
+                                                <option value="0" selected>All</option>
+                                                <option value="PP01">PP01 : Production Plan Upload and Maintenance</option>
+                                                <option value="PP02">PP02 : Daily Production Plan Release</option>
+                                                <option value="PI01">PI01 : Part ID Format Setting</option>
+                                                <option value="PI03">PI03 : Part ID Registration</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="two wide field  ">
+                                        <label>Status</label>
+                                        <div class="ui mini basic input  ">
+                                            <select class="ui mini fluid search selection dropdown" id="searchStatus" name="skills">
+                                                <option value="0" selected>All</option>
+                                                <option value="1">Success</option>
+                                                <option value="2">Error</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="two wide field">
+                                    </div>
+
+                                    <div class="four wide field" style="text-align: right;">
+                                        <label>&nbsp;</label>
+                                        <div class="ui active mini button" id="WBX01281Search"><i class="search icon"></i>Search</div>
+                                        <div class="ui active mini button " id="WBX01281Clear"><i class="paint brush icon"></i>Clear</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div>&nbsp;</div>
+
+
+                    <div id="content_datatable_result_search">
+                        <div class=" sixteen wide column row">
+                            <table id="datatable_result_search" class="ui celled striped unstackable table" style="width:100%">
+                                <thead>
+                                    <tr style="text-align: center;">
+                                        <th>Date / Time</th>
+                                        <th>Screen Code</th>
+                                        <th>Screen Name</th>
+                                        <th>Process</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>List</th>
+                                        <th>Action By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>05/02/2020 11:00:00</td>
+                                        <td>PA01</td>
+                                        <td>Production Plan Upload and Maintenance</td>
+                                        <td>Upload</td>
+                                        <td style="color: red;">Error</td>
+                                        <td></td>
+                                        <td><a href="#">Download File</a></td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:05:00</td>
+                                        <td>PA01</td>
+                                        <td>Production Plan Upload and Maintenance</td>
+                                        <td>Upload</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:10:00</td>
+                                        <td>PA01</td>
+                                        <td>Production Plan Upload and Maintenance</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:15:00</td>
+                                        <td>PP02</td>
+                                        <td>Daily Production Plan Release</td>
+                                        <td>Release</td>
+                                        <td>Success</td>
+                                        <td> </td>
+                                        <td><a href="#">Download File</a></td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:20:00</td>
+                                        <td>PI01</td>
+                                        <td>Part ID Format Setting</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:25:00</td>
+                                        <td>PI02</td>
+                                        <td>Part ID Master</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:30:00</td>
+                                        <td>PI03</td>
+                                        <td>Part ID Registration</td>
+                                        <td>Register</td>
+                                        <td style="color: red;">Error</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:35:00</td>
+                                        <td>VH01</td>
+                                        <td>Vehicle History Inquiry</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:40:00</td>
+                                        <td>PI05</td>
+                                        <td>Part ID Amendment</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:45:00</td>
+                                        <td>VH02</td>
+                                        <td>Vehicle Tracking Time Maintenance</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/02/2020 11:50:00</td>
+                                        <td>VH02</td>
+                                        <td>Vehicle Tracking Time Maintenance</td>
+                                        <td>Register</td>
+                                        <td>Success</td>
+                                        <td><a href="#">See Detail</a></td>
+                                        <td> </td>
+                                        <td>nuttakit</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="sixteen wide column row" style="display: none;">
+                            <div class="sixteen wide column row">
+                                <div class=" ui active mini button" id="WSY01Register"><i></i> Register</div>
+                                <div class=" ui active mini button"><i></i> Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- -->
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+
+
+                    <div class="sixteen wide column row">
+                        <form class="ui form raised segment " id="gimHeaderForm" style="width: 100%;display: ;">
+                            <div id="input_s" class="field ">
+                                <div class="fields ">
+                                    <div class="three wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Date / Time&nbsp;</div>
+                                            05/02/2020 11:20:00
+                                        </div>
+                                    </div>
+
+                                    <div class="two wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Screen Code&nbsp;</div>
+                                            PI01
+                                        </div>
+                                    </div>
+
+                                    <div class="four wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Screen Name&nbsp;</div>
+                                            Part ID Format Setting
+                                        </div>
+                                    </div>
+
+                                    <div class="two wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Process&nbsp;</div>
+                                            Register
+                                        </div>
+                                    </div>
+
+                                    <div class="two wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Status&nbsp;</div>
+                                            Success
+                                        </div>
+                                    </div>
+
+                                    <div class="two wide field  ">
+                                        <div class="item">
+                                            <div class="ui horizontal label">Action By&nbsp;</div>
+                                            nuttakit
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div>&nbsp;</div>
+
+                    <div id="content_datatable_result_detail">
+                        <div class=" sixteen wide column row">
+                            <table id="datatable_result_detail" class="ui celled striped unstackable table" style="width:100%">
+                                <thead>
+                                    <tr style="text-align: center;">
+                                        <th>Action</th>
+                                        <th>Keys Info.</th>
+                                        <th>Changed Info.</th>
+                                        <th>Before Value</th>
+                                        <th>After value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Add</td>
+                                        <td>578W, Frame, Vin No. 3</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edit</td>
+                                        <td>578W, Engine, Engine No. 1</td>
+                                        <td>Characteristic</td>
+                                        <td>AAACCCNNN</td>
+                                        <td>CCCAANNNNN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delete</td>
+                                        <td>578W, Frame, Vin No. 1</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="sixteen wide column row" style="display: none;">
+                            <div class="sixteen wide column row">
+                                <div class=" ui active mini button" id="WSY01Register"><i></i> Register</div>
+                                <div class=" ui active mini button"><i></i> Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="sixteen wide column row" style="text-align: right;display:  ;">
+                        <div class="sixteen wide column row">
+
+                            <div class=" ui active mini button"><i></i> Bcak</div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="modileRegis" class="ui mini modal">
+        <div class="content">
+            <p>MSY01000001INF : Data editing is deleled. Do you want to continue?
+
+            </p>
+        </div>
+        <div class="actions">
+            <div class="ui green active mini button">OK</div>
+            <div class="ui grey cancel mini button">cancel</div>
+        </div>
+    </div>
+</body>
+
+</html>
