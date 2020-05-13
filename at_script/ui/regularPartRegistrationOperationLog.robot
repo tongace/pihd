@@ -13,7 +13,7 @@ Regular Part ID Registration - View Operation Logs
 
 ***Keywords***
 Select Menu Operation Log
-    #Open Browser    http://localhost:5000/pages/operationLog/operationLogSc48    chrome
+    #Open Browser    http://localhost:5000/pages/operationLog/operationLog    chrome
     Open Browser    http://localhost:5000/pages/vehicleHistoryInquiry/vehicleHistoryInquiry    chrome
     Maximize Browser Window
     Sleep    2
