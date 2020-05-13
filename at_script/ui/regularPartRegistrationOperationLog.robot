@@ -13,7 +13,7 @@ Regular Part ID Registration - View Operation Logs
 
 ***Keywords***
 Select Menu Operation Log
-    #Open Browser    http://localhost:5000/pages/operationLog/operationLogSc48    chrome
+    #Open Browser    http://localhost:5000/pages/operationLog/operationLog    chrome
     Open Browser    http://localhost:5000/pages/vehicleHistoryInquiry/vehicleHistoryInquiry    chrome
     Maximize Browser Window
     Sleep    2
@@ -33,7 +33,7 @@ Select Combobox Screen
     #Select From List By Value    id:searchScreen    PI03
 
 Click Search
-    Click Element    id:search
+    Click Element    id:searchButton
     Wait Until Element Is Visible    id:searchResultSection
 
 View Search Result Data Not Found
