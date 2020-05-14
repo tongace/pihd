@@ -1,32 +1,29 @@
 *** Settings ***
 Library    SeleniumLibrary
 
-***Test Cases***
+*** Test Cases ***
 Regular Part ID Registration
     Select Tracking Point
     Scan Production No.
     Register Part
     View Vehicle History Inquiry
-    View Operation Logs
 
-***Keywords***
+*** Variable ***
+
+*** Keywords ***
 Select Tracking Point
     Open Browser    http://localhost:5000/pages/partIdRegistration/partIdRegistration    chrome
-    #Select From List By Value    id=searchShop    A
-    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/input
-    Wait Until Element Is Visible    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/div[2]
-    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[1]/div/div[2]/div[2]
-    #Select From List By Value    id=searchTrackingPoint    1M0
-    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/i
-    Wait Until Element Is Visible    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/div[2]
-    Click Element    xpath://*[@id="critriaForm"]/div/div[1]/div[2]/div/div[2]/div[2]
+    #Select Shop = A
+    Select From List By Value    name=searchShopInputSection    value=A
+    #Select Tracking Point = 1M0
+    Select From List By Value    name=searchTrackingPointInputSection    value=1M0
 
     Click Element    id=buttonSearch
     Wait Until Element Is Visible    id=partRegistrationSection
-    
+    #Compare Shop Lable
     ${labelShopValue}=    Get Value    id=labelShop
     Should be equal    ${labelShopValue}   A
-
+    #Compare Tracking Point Lable
     ${labelTrackingPointValue}=    Get Value    id=labelTrackingPoint
     Should be equal    ${labelTrackingPointValue}   1M0 : Frame-2
 
@@ -43,21 +40,31 @@ Register Part
     Table Row Should Contain    id=tablePartList    3    TRANSMISSION ASSY
     Table Row Should Contain    id=tablePartList    4    FUEL TANK FILLER
     Table Row Should Contain    id=tablePartList    5    Vin No.
-    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr/td[3]/div/input    9903101111
-    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr/td[3]/div/input    ENTER
-    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[2]/td[3]/div/input    1GD0796211
-    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[2]/td[3]/div/input    ENTER
-    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[3]/td[3]/div/input    10A510020ANT051R
-    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[3]/td[3]/div/input    ENTER
-    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[4]/td[3]/div/input    T240514200459112
-    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[4]/td[3]/div/input    ENTER
-    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    MR0KU3CDXK0005045
-    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[5]/td[3]/div/input    ENTER
+    Scan Part    position=1    value=9903101111
+    Scan Part    position=2    value=1GD0796211
+    Scan Part    position=3    value=10A510020ANT051R
+    Scan Part    position=4    value=T240514200459112
+    Scan Part    position=5    value=MR0KU3CDXK0005045
     Click Element    id=buttonComplete
     Alert Should Be Present    MPI03000001CFM: Are you sure to complete install part process of this vehicle in this tracking point?
     Alert Should Be Present    MPI03000001INF: Part installation is complete.
+    Wait Until Element Is Visible    id=previousTrackingSection
+    Table Row Should Contain    id=tablePreviousTracking    1    H30001-01
+
+Scan Part
+    [Arguments]    ${position}    ${value}
+    Set Focus To Element    xpath=//table[@id='tablePartList']/thead[2]/tr[${position}]/td[3]/div/input
+    Input text    xpath=//table[@id='tablePartList']/thead[2]/tr[${position}]/td[3]/div/input    ${value}
+    Press Keys    xpath=//table[@id='tablePartList']/thead[2]/tr[${position}]/td[3]/div/input    ENTER
+
 View Vehicle History Inquiry
     Click Element    id:menucaller
     Wait Until Element Is Visible    id:VH01
     Sleep    2
     Click Element    id:VH01
+
+Select From List By Value
+    [Arguments]    ${name}    ${value}
+    Click Element    xpath://*[@id="${name}"]/div/input
+    Wait Until Element Is Visible    xpath://*[@id="${name}"]/div/div[2]/div[@data-value="${value}"]
+    Click Element     xpath://*[@id="${name}"]/div/div[2]/div[@data-value="${value}"]

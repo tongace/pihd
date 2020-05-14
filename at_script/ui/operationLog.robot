@@ -19,8 +19,7 @@ Select Menu Operation Log
     Sleep    1
     Click Element    id:menucaller
     Sleep    1
-    Wait Until Element Is Visible    id:LG01
-    Sleep    1
+    Wait Until Element Is Visible    id:LG01    
     Click Element    id:LG01
 
 Input Search DateTime From
@@ -29,16 +28,23 @@ Input Search DateTime From
     Press Keys    id:inputDateTimeFrom    ENTER
 
 Select Combobox Screen
-    Click Element    xpath://*[@id="inputSearchScreen"]/div/input
-    Wait Until Element Is Visible    xpath://*[@id="inputSearchScreen"]/div/div[2]
-    #Select From List By Value    id:searchScreen    PI03
-    Click Element    xpath://*[@id="inputSearchScreen"]/div/div[2]/div[5]
+    Select From List By Value    name=searchScreenInputSection    value=PI03
 
 Click Search
     Click Element    id:searchButton
     Wait Until Element Is Visible    id:searchResultSection
 
 View Search Result Data Not Found
-    Wait Until Element Is Visible    id:dataResult
-    Table Should Contain    id:dataResult    No data available in table
-    
+    View DataTable Data Not Found    name=dataResult    text=No data available in table
+
+#Add to Common
+Select From List By Value
+    [Arguments]    ${name}    ${value}
+    Click Element    xpath://*[@id="${name}"]/div/input
+    Wait Until Element Is Visible    xpath://*[@id="${name}"]/div/div[2]/div[@data-value="${value}"]
+    Click Element    xpath://*[@id="${name}"]/div/div[2]/div[@data-value="${value}"]
+
+View DataTable Data Not Found
+    [Arguments]    ${name}    ${text}
+    Wait Until Element Is Visible    id:${name}
+    Table Should Contain    id:${name}    ${text}
