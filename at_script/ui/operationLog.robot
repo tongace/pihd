@@ -27,6 +27,7 @@ Input Search DateTime From
     Input Text    id:inputDateTimeFrom    13/05/2020 00:00
     Press Keys    id:inputDateTimeFrom    ENTER
 
+
 Select Combobox Screen
     Select From List By Value    name=searchScreenInputSection    value=PI03
 
@@ -48,3 +49,4 @@ View DataTable Data Not Found
     [Arguments]    ${name}    ${text}
     Wait Until Element Is Visible    id:${name}
     Table Should Contain    id:${name}    ${text}
+
