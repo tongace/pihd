@@ -1,6 +1,5 @@
 package com.dxc.toyota.application.pihd;
 
-import com.dxc.toyota.application.pihd.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
