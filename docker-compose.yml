@@ -1,0 +1,9 @@
+version: '3.7'
+services: 
+    web:
+        build: ./web
+        image: web:1.1
+    lb:
+        build: ./lb
+        ports: 
+            - 8888:80
